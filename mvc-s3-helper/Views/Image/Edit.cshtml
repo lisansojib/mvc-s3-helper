@@ -1,0 +1,49 @@
+﻿@model MVC_S3_Helper.Models.Image
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Edit", "Image", null, FormMethod.Post,
+                              new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        @Html.HiddenFor(m => m.ID)
+        <legend>Image</legend>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImageTitle, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <div class="control-label col-md-2"><strong>Current Image</strong></div>
+            <div class="col-md-10">
+                @Html.ImageFor(m => Url.Content(m.ImagePath), new { align = "center", @class = "img-responsive" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"><strong>New Image</strong></div>
+            <div class="col-md-10">
+                <input type="file" name="newImage" />
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="panel">
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-info" />
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

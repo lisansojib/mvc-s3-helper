@@ -1,0 +1,16 @@
+﻿@using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
+{
+    <div class="fallback">
+        <input name="file" type="file" multiple />
+    </div>
+    <input type="button" id="btnUpload" class="btn btn-block" value="Upload" />
+}
+
+<style type="text/css">
+    .dz-max-files-reached {
+        background-color: red;
+    }
+</style>
+@section scripts{
+    <script src="~/Scripts/upload.js"></script>
+}
